@@ -1,0 +1,6 @@
+{
+  "name": "ControlMenuArea",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./ControlMenuArea.js"
+}

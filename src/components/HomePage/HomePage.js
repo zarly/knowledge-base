@@ -3,6 +3,9 @@
 import React, { PropTypes, Component } from 'react';
 import styles from './HomePage.css';
 import withStyles from '../../decorators/withStyles';
+import ControlMenuArea from '../ControlMenuArea';
+import SearchFiltersArea from '../SearchFiltersArea';
+import SearchResultsArea from '../SearchResultsArea';
 
 @withStyles(styles)
 class HomePage extends Component {
@@ -12,13 +15,16 @@ class HomePage extends Component {
   };
 
   render() {
-    const title = 'Contact Us';
+    let width = this.props.width || 1000;
+
+    const title = 'Home Page';
     this.context.onSetTitle(title);
     return (
       <div className="HomePage">
         <div className="HomePage-container">
-          <h1>{title}</h1>
-          <p>Home page</p>
+          <ControlMenuArea flex="1" />
+          <SearchFiltersArea flex="1.618" />
+          <SearchResultsArea flex="2.618" />
         </div>
       </div>
     );

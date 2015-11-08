@@ -1,0 +1,28 @@
+
+.ControlMenuArea {
+  background: #333;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+}
+
+.ControlMenuArea-link {
+  width: 100%;
+  padding: 3px 8px;
+  text-decoration: none;
+  font-size: 1.125em; /* ~18px */
+}
+
+.ControlMenuArea-link,
+.ControlMenuArea-link:active,
+.ControlMenuArea-link:visited {
+  color: rgba(255, 255, 255, .6);
+}
+
+.ControlMenuArea-link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.ControlMenuArea-splitter {
+  width: 80%;
+}

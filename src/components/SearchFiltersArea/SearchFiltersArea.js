@@ -1,12 +1,12 @@
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import React, { PropTypes, Component } from 'react';
-import styles from './SearchResultsArea.css';
+import styles from './SearchFiltersArea.css';
 import withViewport from '../../decorators/withViewport';
 import withStyles from '../../decorators/withStyles';
 
 @withStyles(styles)
-class SearchResultsArea extends Component {
+class SearchFiltersArea extends Component {
 
   render() {
     var styles = {
@@ -16,7 +16,7 @@ class SearchResultsArea extends Component {
     };
 
     return (
-      <div className="SearchResultsArea" style={styles}>
+      <div className="SearchFiltersArea" style={styles}>
         Search results
       </div>
     );
@@ -24,4 +24,4 @@ class SearchResultsArea extends Component {
 
 }
 
-export default SearchResultsArea;
+export default SearchFiltersArea;

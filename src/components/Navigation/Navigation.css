@@ -1,7 +1,12 @@
-/* React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
+
+.Navigation {
+  background: #337;
+  display: flex;
+  flex-wrap: wrap;
+
+}
 
 .Navigation-link {
-  display: inline-block;
   padding: 3px 8px;
   text-decoration: none;
   font-size: 1.125em; /* ~18px */

@@ -31,22 +31,3 @@
   float: right;
   margin-top: 6px;
 }
-
-.Header-banner {
-  text-align: center;
-}
-
-.Header-bannerTitle {
-  margin: 0;
-  padding: 10px;
-  font-weight: normal;
-  font-size: 4em;
-  line-height: 1em;
-}
-
-.Header-bannerDesc {
-  padding: 0;
-  color: rgba(255, 255, 255, .5);
-  font-size: 1.25em;
-  margin: 0;
-}

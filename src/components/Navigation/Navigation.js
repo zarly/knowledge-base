@@ -14,8 +14,14 @@ class Navigation extends Component {
   };
 
   render() {
+    var styles = {
+      width: this.props.width,
+      height: this.props.height,
+      flex: this.props.flex
+    };
+
     return (
-      <div className={classNames(this.props.className, 'Navigation')} role="navigation">
+      <div className={classNames(this.props.className, 'Navigation')} role="navigation" style={styles}>
         <a className="Navigation-link" href="/about" onClick={Link.handleClick}>About</a>
         <a className="Navigation-link" href="/contact" onClick={Link.handleClick}>Contact</a>
         <span className="Navigation-spacer"> | </span>

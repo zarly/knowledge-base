@@ -5,6 +5,7 @@ import Router from 'react-routing/src/Router';
 import http from './core/HttpClient';
 import App from './components/App';
 import ContentPage from './components/ContentPage';
+import HomePage from './components/HomePage';
 import ContactPage from './components/ContactPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
@@ -22,6 +23,8 @@ const router = new Router(on => {
   on('/login', async () => <LoginPage />);
 
   on('/register', async () => <RegisterPage />);
+
+  on('/', async () => <HomePage />);
 
   on('*', async (state) => {
     const content = await http.get(`/api/content?path=${state.path}`);
