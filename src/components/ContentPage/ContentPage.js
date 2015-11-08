@@ -25,6 +25,7 @@ class ContentPage extends Component {
           {
             this.props.path === '/' ? null : <h1>{this.props.title}</h1>
           }
+          ++++++++++++++++++++++++++++
           <div dangerouslySetInnerHTML={{__html: this.props.content || ''}} />
         </div>
       </div>

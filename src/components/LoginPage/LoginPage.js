@@ -18,7 +18,19 @@ class LoginPage extends Component {
       <div className="LoginPage">
         <div className="LoginPage-container">
           <h1>{title}</h1>
-          <p>...</p>
+          <form>
+            <label>
+              E-mail:
+              <input type="text" name="email" />
+            </label>
+            <br />
+            <label>
+              Password:
+              <input type="password" name="password" />
+            </label>
+            <br />
+            <button>Sign in</button>
+          </form>
         </div>
       </div>
     );
