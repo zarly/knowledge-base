@@ -15,8 +15,6 @@ class HomePage extends Component {
   };
 
   render() {
-    let width = this.props.width || 1000;
-
     const title = 'Home Page';
     this.context.onSetTitle(title);
     return (

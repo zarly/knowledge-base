@@ -4,9 +4,14 @@ import React, { PropTypes, Component } from 'react';
 import styles from './SearchFiltersArea.css';
 import withViewport from '../../decorators/withViewport';
 import withStyles from '../../decorators/withStyles';
+import SearchBar from '../SearchBar';
 
 @withStyles(styles)
 class SearchFiltersArea extends Component {
+
+  onSearchQueryChanged (input, resolve) {
+    resolve([input]);
+  }
 
   render() {
     var styles = {
@@ -17,6 +22,7 @@ class SearchFiltersArea extends Component {
 
     return (
       <div className="SearchFiltersArea" style={styles}>
+        <SearchBar onChange={this.onSearchQueryChanged} />
         Search results
       </div>
     );

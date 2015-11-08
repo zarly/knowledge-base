@@ -5,7 +5,6 @@ import styles from './App.css';
 import withContext from '../../decorators/withContext';
 import withStyles from '../../decorators/withStyles';
 import Header from '../Header';
-import Feedback from '../Feedback';
 import Footer from '../Footer';
 
 @withContext
@@ -14,7 +13,7 @@ class App extends Component {
 
   static propTypes = {
     children: PropTypes.element.isRequired,
-    error: PropTypes.object,
+    error: PropTypes.object
   };
 
   render() {
@@ -22,7 +21,6 @@ class App extends Component {
       <div>
         <Header />
         {this.props.children}
-        <Feedback />
         <Footer />
       </div>
     ) : this.props.children;
