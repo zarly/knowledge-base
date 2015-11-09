@@ -5,6 +5,7 @@ import Suggestions from './Suggestions';
 import withStyles from '../../decorators/withStyles';
 
 const KEY_CODES = {
+    enter: 13,
     up: 38,
     down: 40
 };
@@ -89,7 +90,10 @@ class SearchBar extends Component {
         let {highlightedItem: item, suggestions} = this.state;
         let lastItem = suggestions.length - 1;
 
-        if (e.which == KEY_CODES.up) {
+        if (e.which == KEY_CODES.enter) {
+            this.onSubmit(e);
+            return;
+        } else if (e.which == KEY_CODES.up) {
             item = (item <= 0) ? lastItem : item - 1;
         } else {
             item = (item == lastItem) ? 0 : item + 1;
@@ -127,7 +131,7 @@ class SearchBar extends Component {
                         placeholder={this.props.placeholder}
                         onChange={this.onChange.bind(this)}
                         onKeyDown={((e) => {
-                          (e.which == KEY_CODES.up || e.which == KEY_CODES.down) &&
+                          (e.which == KEY_CODES.up || e.which == KEY_CODES.down || e.which == KEY_CODES.enter) &&
                           this.state.suggestions &&
                           this.onKeyDown(e);
                         }).bind(this)}

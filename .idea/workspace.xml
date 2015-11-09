@@ -2,9 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5a6b9fcf-1478-42fa-bb6f-6c623d251aa5" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/SearchBar/cancel.svg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/components/SearchBar/search.svg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/SearchBar/SearchBar.css" afterPath="$PROJECT_DIR$/src/components/SearchBar/SearchBar.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/SearchBar/SearchBar.js" afterPath="$PROJECT_DIR$/src/components/SearchBar/SearchBar.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/components/SearchFiltersArea/SearchFiltersArea.js" afterPath="$PROJECT_DIR$/src/components/SearchFiltersArea/SearchFiltersArea.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
@@ -69,11 +66,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchBar.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SearchBar.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/SearchBar/SearchBar.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="138" column="75" selection-start-line="138" selection-start-column="75" selection-end-line="138" selection-end-column="75" />
+            <state vertical-scroll-proportion="2.9402175">
+              <caret line="131" column="59" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -99,11 +96,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchFiltersArea.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SearchFiltersArea.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/components/SearchFiltersArea/SearchFiltersArea.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5675676">
-              <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+            <state vertical-scroll-proportion="-9.807693">
+              <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -182,8 +179,8 @@
         <option value="$PROJECT_DIR$/src/components/SearchBar/cancel.svg" />
         <option value="$PROJECT_DIR$/src/components/SearchBar/SearchBar.css" />
         <option value="$PROJECT_DIR$/src/components/SearchBar/search.svg" />
-        <option value="$PROJECT_DIR$/src/components/SearchBar/SearchBar.js" />
         <option value="$PROJECT_DIR$/src/components/SearchFiltersArea/SearchFiltersArea.js" />
+        <option value="$PROJECT_DIR$/src/components/SearchBar/SearchBar.js" />
       </list>
     </option>
   </component>
@@ -621,7 +618,7 @@
       <created>1447003918112</created>
       <option name="number" value="Default" />
       <updated>1447003918112</updated>
-      <workItem from="1447003921317" duration="21001000" />
+      <workItem from="1447003921317" duration="21850000" />
     </task>
     <task id="LOCAL-00001" summary="minor changes">
       <created>1447018047560</created>
@@ -647,11 +644,17 @@
       <option name="project" value="LOCAL" />
       <updated>1447026561868</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="fix search box">
+      <created>1447031076408</created>
+      <option name="number" value="00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1447031076408</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="21001000" />
+    <option name="totallyTimeSpent" value="21850000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="-4" width="1374" height="749" extended-state="6" />
@@ -696,7 +699,8 @@
     <MESSAGE value="clean up" />
     <MESSAGE value="main layout" />
     <MESSAGE value="search box" />
-    <option name="LAST_COMMIT_MESSAGE" value="search box" />
+    <MESSAGE value="fix search box" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix search box" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -1119,18 +1123,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchBar/SearchBar.js">
+    <entry file="file://$PROJECT_DIR$/src/components/SearchFiltersArea/SearchFiltersArea.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="138" column="75" selection-start-line="138" selection-start-column="75" selection-end-line="138" selection-end-column="75" />
+        <state vertical-scroll-proportion="-9.807693">
+          <caret line="41" column="0" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/SearchFiltersArea/SearchFiltersArea.js">
+    <entry file="file://$PROJECT_DIR$/src/components/SearchBar/SearchBar.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5675676">
-          <caret line="14" column="0" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+        <state vertical-scroll-proportion="2.9402175">
+          <caret line="131" column="59" selection-start-line="131" selection-start-column="59" selection-end-line="131" selection-end-column="59" />
           <folding />
         </state>
       </provider>

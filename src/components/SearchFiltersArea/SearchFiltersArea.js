@@ -10,7 +10,7 @@ import SearchBar from '../SearchBar';
 class SearchFiltersArea extends Component {
 
   state = {
-    tags: ['tag-1', 'tag-2']
+    tags: []
   };
 
   onSearchQueryChanged (input, resolve) {
@@ -18,8 +18,11 @@ class SearchFiltersArea extends Component {
   }
 
   onSearchQuerySubmit (query) {
-    this.state.tags.push(query);
-    this.render();
+    this.state.tags.concat(query);
+    this.setState({
+      tags: this.state.tags.concat(query)
+    });
+    //this.render();
   }
 
   render() {
