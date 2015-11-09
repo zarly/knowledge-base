@@ -36,7 +36,7 @@ class SearchFiltersArea extends Component {
     return (
       <div className="SearchFiltersArea" style={styles}>
         <SearchBar onChange={this.onSearchQueryChanged.bind(this)} onSubmit={this.onSearchQuerySubmit.bind(this)} />
-        {this.state.tags.map(tag => <TagBlock>{tag}</TagBlock>)}
+        {this.state.tags.map((tag, n) => <TagBlock key={n}>{tag}</TagBlock>)}
       </div>
     );
   }
