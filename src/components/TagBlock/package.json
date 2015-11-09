@@ -1,0 +1,6 @@
+{
+  "name": "TagBlock",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./TagBlock.js"
+}

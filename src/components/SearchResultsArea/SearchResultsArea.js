@@ -22,8 +22,13 @@ class SearchResultsArea extends Component {
 
     return (
       <div className="SearchResultsArea" style={styles}>
-        Search results
-        <SearchBar onChange={this.onSearchQueryChanged} />
+        <div className="SearchResultsArea-viewingBlock">
+          No results here
+        </div>
+        <div className="SearchResultsArea-addingBlock">
+          <textarea style={{flex: 1, height: '100px'}}></textarea>
+          <button style={{width: '100px', height: '100px'}}>Add new note</button>
+        </div>
       </div>
     );
   }

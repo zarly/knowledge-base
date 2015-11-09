@@ -5,6 +5,7 @@ import styles from './SearchFiltersArea.css';
 import withViewport from '../../decorators/withViewport';
 import withStyles from '../../decorators/withStyles';
 import SearchBar from '../SearchBar';
+import TagBlock from '../TagBlock';
 
 @withStyles(styles)
 class SearchFiltersArea extends Component {
@@ -35,7 +36,7 @@ class SearchFiltersArea extends Component {
     return (
       <div className="SearchFiltersArea" style={styles}>
         <SearchBar onChange={this.onSearchQueryChanged.bind(this)} onSubmit={this.onSearchQuerySubmit.bind(this)} />
-        Tags: {this.state.tags.join(', ')}
+        {this.state.tags.map(tag => <TagBlock>{tag}</TagBlock>)}
       </div>
     );
   }

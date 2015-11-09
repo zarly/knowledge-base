@@ -1,5 +1,9 @@
 @import '../../../node_modules/normalize.css/normalize.css';
 
+* {
+  box-sizing: border-box;
+}
+
 /*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 @import '../variables.css';
