@@ -36,7 +36,7 @@
 }
 
 .search-bar-cancel {
-    background-image: url(../img/cancel.svg);
+    background-image: url(./cancel.svg);
     background-size: 40%;
     display: inline-block;
     right: 45px;
@@ -44,7 +44,7 @@
 
 .search-bar-submit {
     background-color: #e5e5e5;
-    background-image: url(../img/search.svg);
+    background-image: url(./search.svg);
     background-size: 35%;
     border: 1px solid #ddd;
     border-radius: 0;

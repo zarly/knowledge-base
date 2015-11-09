@@ -9,8 +9,17 @@ import SearchBar from '../SearchBar';
 @withStyles(styles)
 class SearchFiltersArea extends Component {
 
+  state = {
+    tags: ['tag-1', 'tag-2']
+  };
+
   onSearchQueryChanged (input, resolve) {
     resolve([input]);
+  }
+
+  onSearchQuerySubmit (query) {
+    this.state.tags.push(query);
+    this.render();
   }
 
   render() {
@@ -22,8 +31,8 @@ class SearchFiltersArea extends Component {
 
     return (
       <div className="SearchFiltersArea" style={styles}>
-        <SearchBar onChange={this.onSearchQueryChanged} />
-        Search results
+        <SearchBar onChange={this.onSearchQueryChanged.bind(this)} onSubmit={this.onSearchQuerySubmit.bind(this)} />
+        Tags: {this.state.tags.join(', ')}
       </div>
     );
   }
