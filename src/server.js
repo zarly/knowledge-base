@@ -7,6 +7,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import Router from './routes';
 import Html from './components/Html';
+import MongooseInitializer from './initializers/mongoose.js';
+
+MongooseInitializer.init();
 
 const server = global.server = express();
 const port = process.env.PORT || 5000;

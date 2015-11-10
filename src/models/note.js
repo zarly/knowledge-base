@@ -4,9 +4,7 @@ import { Schema } from 'mongoose';
 
 var NoteSchema = new Schema({
     content: {type: String},
-    book: {type: String},
-    updatedAt: {type: Date},
-    createdAt: {type: Date}
+    book: {type: String}
 });
 
 export default mongoose.model('Note', NoteSchema);
