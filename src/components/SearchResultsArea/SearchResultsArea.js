@@ -10,6 +10,14 @@ import EditingService from '../../services/editing_service.js';
 @withStyles(styles)
 class SearchResultsArea extends Component {
 
+  constructor () {
+    super();
+
+    EditingService.on('notes:changed', (notes)=> {
+      this.setState({notes: notes});
+    });
+  }
+
   state = {
     notes: []
   };
@@ -18,9 +26,9 @@ class SearchResultsArea extends Component {
     var text = this.refs.addingTextarea.value;
     this.refs.addingTextarea.value = '';
 
-    this.setState({
-      notes: this.state.notes.concat({text: text, key: Math.random()})
-    });
+    //this.setState({
+    //  notes: this.state.notes.concat({text: text, key: Math.random()})
+    //});
 
     EditingService.addNote(text);
   }

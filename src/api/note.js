@@ -37,7 +37,6 @@ const routesHash = {
         done(error);
       } else {
         done(null, note);
-        //res.status(200).send('create');
       }
     });
   },

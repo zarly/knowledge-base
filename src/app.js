@@ -49,7 +49,7 @@ function render(state) {
   });
 }
 
-const App = {
+window.App = {
   run: function () {
     let currentLocation = null;
     let currentState = null;
