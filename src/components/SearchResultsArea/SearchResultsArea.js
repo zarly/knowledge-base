@@ -5,6 +5,7 @@ import styles from './SearchResultsArea.css';
 import withViewport from '../../decorators/withViewport';
 import withStyles from '../../decorators/withStyles';
 import TagBlock from '../TagBlock';
+import EditingService from '../../services/editing_service.js';
 
 @withStyles(styles)
 class SearchResultsArea extends Component {
@@ -16,9 +17,12 @@ class SearchResultsArea extends Component {
   onClickAddNewNote (e) {
     var text = this.refs.addingTextarea.value;
     this.refs.addingTextarea.value = '';
+
     this.setState({
       notes: this.state.notes.concat({text: text, key: Math.random()})
     });
+
+    EditingService.addNote(text);
   }
 
   render() {

@@ -9,9 +9,16 @@ const ApiHelper = {
             if (!routesHash.hasOwnProperty(path)) return;
 
             var handler = routesHash[path];
-            router.get('/' + path, async (req, res, next) => {
+            router.all('/' + path, async (req, res, next) => {
                 try {
-                    handler(req, res);
+                    handler(req.query || req.body || {}, function (err, result) {
+                        if (err) {
+                            next(err);
+                        }
+                        else {
+                            res.json(result);
+                        }
+                    });
                 } catch (err) {
                     next(err);
                 }

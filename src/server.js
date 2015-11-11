@@ -7,6 +7,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/server';
 import Router from './routes';
 import Html from './components/Html';
+import ApiHelper from './api/_api_helper.js';
 import MongooseInitializer from './initializers/mongoose.js';
 
 MongooseInitializer.init();
@@ -24,7 +25,7 @@ server.use(express.static(path.join(__dirname, 'public')));
 // Register API middleware
 // -----------------------------------------------------------------------------
 server.use('/api/content', require('./api/content'));
-server.use('/api/note', require('./api/note'));
+server.use('/api/note', ApiHelper.setRoutes(require('./api/note')));
 
 //
 // Register server-side rendering middleware

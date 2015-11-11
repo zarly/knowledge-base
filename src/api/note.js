@@ -1,29 +1,27 @@
 
 import Note from '../models/note.js';
-import ApiHelper from './_api_helper.js';
 
 const routesHash = {
-  'list': (req, res, next) => {
+  'list': (query, done) => {
     Note
         .paginate({},{
-          page: req.query.page,
-          limit: req.query.limit
+          page: query.page,
+          limit: query.limit
         },
         function(error, notes, pages, total) {
           if (error) {
-            next(error);
+            done(error);
           } else {
-            res
-                .json({
-                  notes: notes,
-                  pages: pages,
-                  count: total
-                });
+            done(null, {
+              notes: notes,
+              pages: pages,
+              count: total
+            });
           }
         });
   },
-  'get': (req, res, next) => {
-    res.status(200).send('get');
+  'get': (query, done) => {
+    done(null, 'get');
   },
   /**
    * @function
@@ -33,12 +31,12 @@ const routesHash = {
    * @param  {HttpResponse} res a http response
    * @param  {Function} next a error handler
    */
-  'create': (req, res, next) => {
-    Note.create(req.body || {}, function(error, note) {
+  'create': (query, done) => {
+    Note.create(query, function(error, note) {
       if (error) {
-        next(error);
+        done(error);
       } else {
-        res.json(note);
+        done(null, note);
         //res.status(200).send('create');
       }
     });
@@ -51,4 +49,4 @@ const routesHash = {
   }
 };
 
-export default ApiHelper.setRoutes(routesHash);
+export default routesHash;
