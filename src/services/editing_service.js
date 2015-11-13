@@ -1,7 +1,7 @@
 
 import GlobalModel from './global_model.js';
 import EEV from '../vendor/eev.js';
-import Ajax from '../vendor/ajax.min.js';
+import Ajax from '../vendor/ajax.js';
 
 const EditingService = {
     init: function () {
