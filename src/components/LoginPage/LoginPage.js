@@ -31,6 +31,8 @@ class LoginPage extends Component {
             <br />
             <button>Sign in</button>
           </form>
+
+          <a href="/auth/facebook">Enter over facebook</a>
         </div>
       </div>
     );

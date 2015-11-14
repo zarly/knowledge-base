@@ -8,6 +8,7 @@ var defer = require('config/defer').deferConfig;
  * @type {Object}
  */
 module.exports = {
+
     /**
      * @description default application base url
      * @type {String}
@@ -17,18 +18,9 @@ module.exports = {
     }),
 
 
-    /**
-     * @description application port
-     * @type {Number}
-     */
     port: 3000,
-
-
-    /**
-     * @description application ip address
-     * @type {String}
-     */
     ip: '127.0.0.1',
+    host: 'localhost',
 
 
     /**
@@ -56,6 +48,15 @@ module.exports = {
                 }
             }
         }
+    },
+
+    auth: {
+        sessionSecretKey: 'book-secret-key'
+    },
+
+    facebook: {
+        appId: '874698845979602',
+        appSecret: '6c3fd6b358bc2d6ffcc5717a4f0920b4'
     },
 
 

@@ -2,6 +2,7 @@
 
 import 'babel-core/polyfill';
 import path from 'path';
+import config from 'config';
 
 import express from 'express';
 import cookieParser from 'cookie-parser';
@@ -23,8 +24,10 @@ import Html from './components/Html';
 import ApiHelper from './api/_api_helper.js';
 
 import mongoose from 'mongoose';
-import mongooseSession from 'mongoose-session';
 import MongooseInitializer from './initializers/mongoose.js';
+import connectMongo from 'connect-mongo';
+
+var MongoStore = connectMongo(session);
 
 MongooseInitializer.init();
 
@@ -40,8 +43,16 @@ server.use(cookieParser());
 server.use(bodyParser.urlencoded({ extended: false }));
 server.use(bodyParser.json());
 server.use(methodOverride('X-HTTP-Method-Override'));
-//server.use(session({secret: 'book-secret-key', saveUninitialized: true, resave: true, store: mongooseSession(mongoose)}));
-server.use(session({secret: 'book-secret-key', saveUninitialized: true, resave: true}));
+server.use(session({
+  secret: config.auth.sessionSecretKey,
+  saveUninitialized: true,
+  resave:true,
+  store: new MongoStore({
+    mongooseConnection: mongoose.connection,
+    ttl: 100 * 365 * 24 * 3600
+  })
+}));
+//server.use(session({secret: config.auth.sessionSecretKey, saveUninitialized: true, resave: true}));
 server.use(passport.initialize());
 server.use(express.static(path.join(__dirname, 'public')));
 
@@ -68,24 +79,31 @@ server.use(express.static(path.join(__dirname, 'public')));
 passport.use(new LocalStrategy(
     function(username, password, done) {
       //done(null, false, { message: 'Incorrect username.' });
-      done(null, { id: 22, username: 'juancito' });
+      done(null, { id: 23, username: username });
     }
 ));
-//passport.use(new FacebookStrategy({
-//      clientID: FACEBOOK_APP_ID,
-//      clientSecret: FACEBOOK_APP_SECRET,
-//      callbackURL: "http://www.example.com/auth/facebook/callback"
-//    },
-//    function(accessToken, refreshToken, profile, done) {
-//      done(null, {user:222});
-//    }
-//));
+passport.use(new FacebookStrategy({
+      clientID: config.facebook.appId,
+      clientSecret: config.facebook.appSecret,
+      callbackURL: 'http://' + config.host + '/auth/facebook/callback'
+    },
+    function(accessToken, refreshToken, profile, done) {
+      done(null, {id: 222});
+    }
+));
+
 passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 passport.deserializeUser(function(id, done) {
   done(null, 'juancito');
 });
+
+server.get('/auth/facebook', passport.authenticate('facebook'));
+server.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
 server.post('/login', passport.authenticate('local', {
   successRedirect: '/',
   failureRedirect: '/login'
@@ -106,7 +124,10 @@ server.use('/api/note', ApiHelper.setRoutes(require('./api/note')));
 // -----------------------------------------------------------------------------
 server.get('*', async (req, res, next) => {
   try {
-    if (!req.user && req.path !== '/login') return res.redirect('/login');
+    var isLoggedIn = req.session && req.session.passport && req.session.passport.user;
+    var isOnLoginPage = req.path === '/login';
+    if (!isLoggedIn && !isOnLoginPage) return res.redirect('/login');
+    if (isLoggedIn && isOnLoginPage) return res.redirect('/');
 
     let statusCode = 200;
     const data = { title: '', description: '', css: '', body: '' };
