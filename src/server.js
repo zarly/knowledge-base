@@ -1,4 +1,3 @@
-/*! React Starter Kit | MIT License | http://www.reactstarterkit.com/ */
 
 import 'babel-core/polyfill';
 import path from 'path';
@@ -14,7 +13,8 @@ import logger from 'morgan';
 import passport from 'passport';
 import LocalStrategy from 'passport-local';
 import TwitterStrategy from 'passport-twitter';
-import GoogleStrategy from 'passport-google';
+import PassportGoogleOAuth from 'passport-google-oauth';
+const GoogleStrategy = PassportGoogleOAuth.OAuth2Strategy;
 import FacebookStrategy from 'passport-facebook';
 
 import React from 'react';
@@ -91,6 +91,15 @@ passport.use(new FacebookStrategy({
       done(null, {id: 222});
     }
 ));
+passport.use(new GoogleStrategy({
+      clientID: config.google.clientID,
+      clientSecret: config.google.clientSecret,
+      callbackURL: 'http://' + config.host + '/auth/google/callback'
+    },
+    function(accessToken, refreshToken, profile, done) {
+      done(null, {id: 222});
+    }
+));
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
@@ -101,6 +110,11 @@ passport.deserializeUser(function(id, done) {
 
 server.get('/auth/facebook', passport.authenticate('facebook'));
 server.get('/auth/facebook/callback', passport.authenticate('facebook', {
+  successRedirect: '/',
+  failureRedirect: '/login'
+}));
+server.get('/auth/google', passport.authenticate('google', { scope: 'profile' }));
+server.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/',
   failureRedirect: '/login'
 }));

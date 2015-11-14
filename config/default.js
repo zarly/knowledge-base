@@ -59,6 +59,10 @@ module.exports = {
         appSecret: '6c3fd6b358bc2d6ffcc5717a4f0920b4'
     },
 
+    google: {
+        clientID: '446928433825-n2c3gk1jhrn1tpro0ct2g8c1bmbtcf4l.apps.googleusercontent.com',
+        clientSecret: '2hIiQP2RMJ47cirbkCny6Pp0'
+    },
 
     /**
      *@description logger configurations
