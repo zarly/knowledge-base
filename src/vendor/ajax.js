@@ -1,14 +1,9 @@
 var ajax = null;
 
 if ('undefined' !== typeof window) {
-    var type
-    try {
-        type = require('type-of')
-    } catch (ex) {
-        //hide from browserify
-        var r = require
-        type = r('type')
-    }
+    var type = function (el) {
+        return typeof el;
+    };
 
     var jsonpID = 0,
         document = window.document,

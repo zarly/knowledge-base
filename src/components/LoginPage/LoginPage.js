@@ -18,10 +18,10 @@ class LoginPage extends Component {
       <div className="LoginPage">
         <div className="LoginPage-container">
           <h1>{title}</h1>
-          <form>
+          <form method="POST">
             <label>
               E-mail:
-              <input type="text" name="email" />
+              <input type="text" name="username" />
             </label>
             <br />
             <label>

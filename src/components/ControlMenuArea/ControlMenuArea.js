@@ -27,6 +27,7 @@ class ControlMenuArea extends Component {
         <hr className="ControlMenuArea-splitter" />
         <a className="ControlMenuArea-link" href="/login" onClick={Link.handleClick}>Log in</a>
         <a className="ControlMenuArea-link" href="/register" onClick={Link.handleClick}>Sign up</a>
+        <a className="ControlMenuArea-link" href="/logout" onClick={Link.handleClick}>Sign out</a>
       </div>
     );
   }
