@@ -6,6 +6,7 @@ import withViewport from '../../decorators/withViewport';
 import withStyles from '../../decorators/withStyles';
 import SearchBar from '../SearchBar';
 import TagBlock from '../TagBlock';
+import editingService from '../../services/editing_service.js';
 
 @withStyles(styles)
 class SearchFiltersArea extends Component {
@@ -15,7 +16,16 @@ class SearchFiltersArea extends Component {
   };
 
   onSearchQueryChanged (input, resolve) {
-    resolve([input]);
+    editingService.getTagsBySearchQuery(input, function (err, tags) {
+      if (err) {
+        console.error(err);
+      }
+      else {
+        resolve(tags.map(function (tag) {
+          return tag.title || '[no title]';
+        }));
+      }
+    });
   }
 
   onSearchQuerySubmit (query) {

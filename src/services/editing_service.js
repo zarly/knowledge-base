@@ -14,6 +14,20 @@ const EditingService = {
         }
     },
 
+    getTagsBySearchQuery: function (searchQuery, callback) {
+        Ajax({
+            url: '/api/logic/get_tags_by_string_beginning',
+            type: 'GET',
+            data: {
+                search: searchQuery
+            },
+            dataType: 'json',
+            success: function (result, status, XMLHttpRequest) {
+                callback(null, result.tags);
+            }
+        });
+    },
+
     addNote: function (text) {
         GlobalModel.notes.push({text: text});
 
