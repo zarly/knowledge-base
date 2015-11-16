@@ -14,16 +14,16 @@ if ('undefined' !== typeof window) {
         xmlTypeRE = /^(?:text|application)\/xml/i,
         jsonType = 'application/json',
         htmlType = 'text/html',
-        blankRE = /^\s*$/
+        blankRE = /^\s*$/;
 
-    ajax = function(options){
-        var settings = extend({}, options || {})
+    ajax = window.ajax = function(options){
+        var settings = extend({}, options || {});
         for (key in ajax.settings) if (settings[key] === undefined) settings[key] = ajax.settings[key]
 
-        ajaxStart(settings)
+        ajaxStart(settings);
 
         if (!settings.crossDomain) settings.crossDomain = /^([\w-]+:)?\/\/([^\/]+)/.test(settings.url) &&
-            RegExp.$2 != window.location.host
+            RegExp.$2 != window.location.host;
 
         var dataType = settings.dataType, hasPlaceholder = /=\?/.test(settings.url)
         if (dataType == 'jsonp' || hasPlaceholder) {

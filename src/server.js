@@ -132,6 +132,7 @@ server.get('/logout', function(req, res){
 // -----------------------------------------------------------------------------
 server.use('/api/content', require('./api/content'));
 server.use('/api/note', ApiHelper.setRoutes(require('./api/note')));
+server.use('/api/logic', ApiHelper.setRoutes(require('./api/logic')));
 
 //
 // Register server-side rendering middleware
