@@ -3,8 +3,9 @@ import mongoose from 'mongoose';
 import { Schema } from 'mongoose';
 
 var NoteSchema = new Schema({
-    title: {type: String},
-    content: {type: String},
+    title: {type: String, default: ''},
+    content: {type: String, default: ''},
+    tags: {type: Array, default: []},
     book: {type: String}
 });
 

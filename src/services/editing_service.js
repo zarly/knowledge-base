@@ -37,7 +37,9 @@ const EditingService = {
             url: '/api/note/create',
             type: 'GET',
             data: {
-                content: text
+                title: '',
+                content: text,
+                tags: GlobalModel.tags.map((tag) => tag.title)
             },
             dataType: 'json',
             success: function (note, status, XMLHttpRequest) {
@@ -46,11 +48,15 @@ const EditingService = {
         });
     },
 
-    addTag: function (text) {
-        GlobalModel.tags.push({text: text});
+    addTagLocally: function (tagTitle) {
+        GlobalModel.tags.push({title: tagTitle});
+
+        this.events.emit('tags:changed', GlobalModel.tags);
     },
 
     addTagIfNotExists: function (tagTitle, callback) {
+        this.addTagLocally(tagTitle);
+
         Ajax({
             url: '/api/logic/add_tag_if_not_exists',
             type: 'GET',
