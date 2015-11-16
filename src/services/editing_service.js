@@ -48,6 +48,20 @@ const EditingService = {
 
     addTag: function (text) {
         GlobalModel.tags.push({text: text});
+    },
+
+    addTagIfNotExists: function (tagTitle, callback) {
+        Ajax({
+            url: '/api/logic/add_tag_if_not_exists',
+            type: 'GET',
+            data: {
+                title: tagTitle
+            },
+            dataType: 'json',
+            success: function (tag, status, XMLHttpRequest) {
+                callback(null, tag);
+            }
+        });
     }
 };
 

@@ -34,6 +34,12 @@ class SearchFiltersArea extends Component {
       tags: this.state.tags.concat(query)
     });
     //this.render();
+    editingService.addTagIfNotExists(query, function (err, tag) {
+      if (err) {
+        console.error(err);
+      }
+      debugger;
+    });
   }
 
   render() {

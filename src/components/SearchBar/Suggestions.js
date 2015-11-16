@@ -58,8 +58,7 @@ const Suggestions = React.createClass({
                             onTouchMove={this.onTouchMove}
                             onTouchEnd={(e) => this.onTouchEnd(suggestion, e)}>
             <span>
-              {searchTerm}
-                <strong>{suggestion.substr(searchTerm.length)}</strong>
+                <strong>{suggestion}</strong>
             </span>
                         </li>
                 )}

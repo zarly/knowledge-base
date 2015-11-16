@@ -77,6 +77,7 @@ class SearchBar extends Component {
         let {highlightedItem, suggestions} = this._getInitialState();
         this.setState({highlightedItem, suggestions});
         this.props.onSubmit(value);
+        this.setState({value: ''});
     }
     onChange(e) {
         clearTimeout(this._timerId);

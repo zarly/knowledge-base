@@ -1,5 +1,6 @@
 
-import Note from '../models/note.js';
+import Note from '../models/note.js'
+import NoteApi from './note.js';
 
 const routesHash = {
 
@@ -33,6 +34,33 @@ const routesHash = {
               pages: pages,
               count: total
             });
+          }
+        });
+  },
+
+  'add_tag_if_not_exists': (query, done) => {
+    var title = query.title;
+    if (!title) {
+      return done({message: 'Wrong query: title is required parameter'});
+    }
+    title = '' + title;
+
+    Note
+        .findOne({
+          title: title
+        },
+        function(error, tag) {
+          if (error) {
+            done(error);
+          } else {
+            if (tag === null) {
+              NoteApi.create({
+                title: title
+              }, done);
+            }
+            else {
+              done(null, tag);
+            }
           }
         });
   },

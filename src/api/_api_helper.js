@@ -21,7 +21,11 @@ const ApiHelper = {
                             next(err);
                         }
                         else {
-                            if (routesConfig.addResponseTime && 'object' === typeof result && result.responseTime === undefined) {
+                            if (routesConfig.addResponseTime
+                                && 'object' === typeof result
+                                && result !== null
+                                && result.responseTime === undefined)
+                            {
                                 result.responseTime = Date.now() - requestStart;
                             }
                             res.json(result);
