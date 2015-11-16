@@ -2,6 +2,41 @@
 import Note from '../models/note.js';
 
 const routesHash = {
+
+  'get_tags_by_string_beginning': (query, done) => {
+    var search = ('' + query.search) || '';
+
+    var dbQuery;
+    if (search.length > 0) {
+      dbQuery = {
+        //title: {$regex: search}
+        //title: {$text: {$search: search}} // since v2.6, need text index by db.collection.createIndex( { "$**": "text" } )
+        $where: 'this.title && this.title.indexOf("' + search + '") >= 0' // TODO: replace to something more efficient
+      };
+    }
+    else {
+      dbQuery = {};
+    }
+
+    Note
+        .paginate(dbQuery, {
+          page: query.page,
+          limit: query.limit
+        },
+        function(error, tags, pages, total) {
+          if (error) {
+            done(error);
+          } else {
+            done(null, {
+              search: search,
+              tags: tags,
+              pages: pages,
+              count: total
+            });
+          }
+        });
+  },
+
   'get_notes_for_list_of_tags': (query, done) => {
     var tags = [];
     try {

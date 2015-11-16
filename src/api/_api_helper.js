@@ -1,6 +1,10 @@
 
 import { Router } from 'express';
 
+const routesConfig = {
+    addResponseTime: true
+};
+
 const ApiHelper = {
     setRoutes: function (routesHash) {
         var router = new Router();
@@ -10,12 +14,16 @@ const ApiHelper = {
 
             var handler = routesHash[path];
             router.all('/' + path, async (req, res, next) => {
+                var requestStart = routesConfig.addResponseTime && Date.now();
                 try {
                     handler(req.query || req.body || {}, function (err, result) {
                         if (err) {
                             next(err);
                         }
                         else {
+                            if (routesConfig.addResponseTime && 'object' === typeof result && result.responseTime === undefined) {
+                                result.responseTime = Date.now() - requestStart;
+                            }
                             res.json(result);
                         }
                     });
