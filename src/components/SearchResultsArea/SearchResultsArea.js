@@ -23,14 +23,20 @@ class SearchResultsArea extends Component {
   };
 
   onClickAddNewNote (e) {
-    var text = this.refs.addingTextarea.value;
+    var title = this.refs.addingTitle.value;
+    var content = this.refs.addingTextarea.value;
+    var tags = (this.refs.addingTags.value || '').split(',');
+
+    if (!title && !content) {
+      alert('Title or content required');
+      return;
+    }
+
+    this.refs.addingTitle.value = '';
     this.refs.addingTextarea.value = '';
+    this.refs.addingTags.value = '';
 
-    //this.setState({
-    //  notes: this.state.notes.concat({text: text, key: Math.random()})
-    //});
-
-    EditingService.addNote(text);
+    EditingService.addNote(title, content, tags);
   }
 
   render() {
@@ -45,11 +51,15 @@ class SearchResultsArea extends Component {
         <div className="SearchResultsArea-viewingBlock">
           {!this.state.notes.length ?
               'No results here' :
-              this.state.notes.map((note, n) => <TagBlock key={n}>{note.text}</TagBlock>)}
+              this.state.notes.map((note, n) => <TagBlock key={n}>{note.content || ('tag: ' + note.title)}</TagBlock>)}
         </div>
-        <div className="SearchResultsArea-addingBlock">
-          <textarea ref="addingTextarea" style={{flex: 1, height: '100px'}}></textarea>
-          <button style={{width: '100px', height: '100px'}} onClick={this.onClickAddNewNote.bind(this)}>Add new note</button>
+        <div className="SearchResultsArea-addingBlock" style={{height: '140px'}}>
+          <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>
+            <input type="text" ref="addingTitle" className="secondary-field" placeholder="title" />
+            <textarea ref="addingTextarea" placeholder="content" style={{flex: 1}}></textarea>
+            <input type="text" ref="addingTags" className="secondary-field" placeholder="tag-1, tag-2, ..." />
+          </div>
+          <button style={{width: '140px'}} onClick={this.onClickAddNewNote.bind(this)}>Add new note</button>
         </div>
       </div>
     );

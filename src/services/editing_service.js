@@ -28,19 +28,20 @@ const EditingService = {
         });
     },
 
-    addNote: function (text) {
-        GlobalModel.notes.push({text: text});
+    addNote: function (title, content, tags) {
+        var newNote = {
+            title: title || '',
+            content: content || '',
+            tags: [].concat(GlobalModel.tags.map((tag) => tag.title) || [], tags || [])
+        };
+        GlobalModel.notes.push(newNote);
 
         this.events.emit('notes:changed', GlobalModel.notes);
 
         Ajax({
             url: '/api/note/create',
             type: 'GET',
-            data: {
-                title: '',
-                content: text,
-                tags: GlobalModel.tags.map((tag) => tag.title)
-            },
+            data: newNote,
             dataType: 'json',
             success: function (note, status, XMLHttpRequest) {
                 console.log(note, status);
@@ -52,6 +53,14 @@ const EditingService = {
         GlobalModel.tags.push({title: tagTitle});
 
         this.events.emit('tags:changed', GlobalModel.tags);
+
+        this.refreshListOfNotesForNewListOfTags(function () {});
+    },
+
+    updateNotesListLocally: function (notes) {
+        GlobalModel.notes = notes;
+
+        this.events.emit('notes:changed', GlobalModel.notes);
     },
 
     addTagIfNotExists: function (tagTitle, callback) {
@@ -67,6 +76,21 @@ const EditingService = {
             success: function (tag, status, XMLHttpRequest) {
                 callback(null, tag);
             }
+        });
+    },
+
+    refreshListOfNotesForNewListOfTags: function (callback) {
+        Ajax({
+            url: '/api/logic/get_notes_for_list_of_tags',
+            type: 'GET',
+            data: {
+                tags: GlobalModel.tags.map((tag) => tag.title)
+            },
+            dataType: 'json',
+            success: function (result, status, XMLHttpRequest) {
+                this.updateNotesListLocally (result.notes);
+                callback(null, result.notes);
+            }.bind(this)
         });
     }
 };
