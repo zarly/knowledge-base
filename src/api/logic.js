@@ -1,6 +1,22 @@
 
+import AsyncLib from 'async';
 import Note from '../models/note.js'
 import NoteApi from './note.js';
+
+const logicHelper = {
+  ensureArray: function (rawValue) {
+    var resultArray;
+    try {
+      if('string' === typeof rawValue) {
+        resultArray = JSON.parse(rawValue);
+      }
+      else if (rawValue instanceof Array) {
+        resultArray = rawValue;
+      }
+    } catch (e) {}
+    return resultArray;
+  }
+};
 
 const routesHash = {
 
@@ -66,17 +82,8 @@ const routesHash = {
   },
 
   'get_notes_for_list_of_tags': (query, done) => {
-    var tags = [];
-    try {
-      if('string' === typeof query.tags) {
-        tags = JSON.parse(query.tags);
-      }
-      else if (query.tags instanceof Array) {
-        tags = query.tags;
-      }
-    } catch (e) {
-      return done({message: 'Wrong query: tags is not valid JSON'});
-    }
+    var tags = logicHelper.ensureArray(query.tags);
+    if (!tags) return done({message: 'Wrong query: tags is not valid array'});
 
     var conditions = tags.map(function (tag) {
       return {tags: tag};
@@ -112,6 +119,21 @@ const routesHash = {
             });
           }
         });
+  },
+
+  'create_note_with_adding_tags': function (query, done) {
+    var tags = logicHelper.ensureArray(query.tags);
+    if (!tags) return done({message: 'Wrong query: tags is not valid array'});
+
+    AsyncLib.eachLimit(tags, 5, function (tag, localDone) {
+      routesHash.add_tag_if_not_exists({title: tag}, localDone);
+    }, function (error) {
+      if (error) {
+        done(error);
+      } else {
+        NoteApi.create(query, done);
+      }
+    });
   }
 };
 

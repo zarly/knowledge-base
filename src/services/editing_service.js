@@ -39,7 +39,7 @@ const EditingService = {
         this.events.emit('notes:changed', GlobalModel.notes);
 
         Ajax({
-            url: '/api/note/create',
+            url: '/api/logic/create_note_with_adding_tags',
             type: 'GET',
             data: newNote,
             dataType: 'json',
