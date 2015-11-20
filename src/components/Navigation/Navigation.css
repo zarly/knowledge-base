@@ -1,9 +1,7 @@
 
 .Navigation {
-  background: #337;
   display: flex;
   flex-wrap: wrap;
-
 }
 
 .Navigation-link {

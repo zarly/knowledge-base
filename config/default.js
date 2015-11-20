@@ -71,6 +71,8 @@ module.exports = {
         dir: 'logs',
         level: 'silly',
         file: 'logs.json'
-    }
+    },
+
+    googleAnalyticsId: 'UA-XXXXX-X'
 
 };

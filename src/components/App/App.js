@@ -18,7 +18,7 @@ class App extends Component {
 
   render() {
     return !this.props.error ? (
-      <div>
+      <div style={{display: 'flex', flexDirection: 'column'}}>
         <Header />
         {this.props.children}
         <Footer />

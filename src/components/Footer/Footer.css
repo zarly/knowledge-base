@@ -3,13 +3,13 @@
 @import '../variables.css';
 
 .Footer {
-  background: #337;
+  background: #000;
   color: #fff;
 }
 
 .Footer-container {
   margin: 0 auto;
-  padding: 20px 15px;
+  padding: 5px 15px;
   max-width: var(--max-content-width);
   text-align: center;
 }

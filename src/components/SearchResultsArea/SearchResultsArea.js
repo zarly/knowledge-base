@@ -4,7 +4,7 @@ import React, { PropTypes, Component } from 'react';
 import styles from './SearchResultsArea.css';
 import withViewport from '../../decorators/withViewport';
 import withStyles from '../../decorators/withStyles';
-import TagBlock from '../TagBlock';
+import NoteBlock from '../NoteBlock';
 import EditingService from '../../services/editing_service.js';
 
 @withStyles(styles)
@@ -25,7 +25,7 @@ class SearchResultsArea extends Component {
   onClickAddNewNote (e) {
     var title = this.refs.addingTitle.value;
     var content = this.refs.addingTextarea.value;
-    var tags = (this.refs.addingTags.value || '').split(',');
+    var tags = (this.refs.addingTags.value || '').split(',').filter(tag => tag);
 
     if (!title && !content) {
       alert('Title or content required');
@@ -51,7 +51,7 @@ class SearchResultsArea extends Component {
         <div className="SearchResultsArea-viewingBlock">
           {!this.state.notes.length ?
               'No results here' :
-              this.state.notes.map((note, n) => <TagBlock key={n}>{note.content || ('tag: ' + note.title)}</TagBlock>)}
+              this.state.notes.map((note, n) => <NoteBlock key={n}>{note.content || ('tag: ' + note.title)}</NoteBlock>)}
         </div>
         <div className="SearchResultsArea-addingBlock" style={{height: '140px'}}>
           <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>

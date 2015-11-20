@@ -25,13 +25,13 @@ class Footer extends Component {
     return (
       <div className="Footer">
         <div className="Footer-container">
-          <span className="Footer-text">© Your Company</span>
+          <span className="Footer-text">© Knowledge base</span>
           <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/" onClick={Link.handleClick}>Home</a>
+          <a className="Footer-link" href="/about" onClick={Link.handleClick}>About</a>
           <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/privacy" onClick={Link.handleClick}>Privacy</a>
+          <a className="Footer-link" href="/terms" onClick={Link.handleClick}>Terms</a>
           <span className="Footer-spacer">·</span>
-          <a className="Footer-link" href="/not-found" onClick={Link.handleClick}>Not Found</a>
+          <a className="Footer-link" href="/contacts" onClick={Link.handleClick}>Contacts</a>
           <span className="Footer-spacer"> | </span>
           <span ref="viewport" className="Footer-viewport Footer-text Footer-text--muted">Viewport:</span>
         </div>

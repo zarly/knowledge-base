@@ -47,6 +47,9 @@ server.use(session({
   secret: config.auth.sessionSecretKey,
   saveUninitialized: true,
   resave:true,
+  cookie : {
+    maxAge: 10 * 365 * 24 * 3600 * 1000
+  },
   store: new MongoStore({
     mongooseConnection: mongoose.connection,
     ttl: 100 * 365 * 24 * 3600
