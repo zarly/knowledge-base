@@ -1,6 +1,7 @@
 .idea
 
 build
+logs
 node_modules
 ncp-debug.log
 npm-debug.log
