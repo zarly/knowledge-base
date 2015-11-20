@@ -57,6 +57,14 @@ const EditingService = {
         this.refreshListOfNotesForNewListOfTags(function () {});
     },
 
+    removeTagLocally: function (tagTitle) {
+        GlobalModel.tags = GlobalModel.tags.filter(tag => tag.title !== tagTitle);
+
+        this.events.emit('tags:changed', GlobalModel.tags);
+
+        this.refreshListOfNotesForNewListOfTags(function () {});
+    },
+
     updateNotesListLocally: function (notes) {
         GlobalModel.notes = notes;
 

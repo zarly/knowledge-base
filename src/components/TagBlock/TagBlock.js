@@ -7,10 +7,15 @@ import styles from './TagBlock.css';
 @withStyles(styles)
 class TagBlock extends Component {
 
+  deleteTag () {
+    this.props.onDelete();
+  }
+
   render() {
     return (
       <div className="TagBlock">
-        {this.props.children}
+        <div>{this.props.children}</div>
+        <div className="deleteBtn" onClick={this.deleteTag.bind(this)}>X</div>
       </div>
     );
   }

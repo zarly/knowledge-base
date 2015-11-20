@@ -49,6 +49,10 @@ class SearchFiltersArea extends Component {
     });
   }
 
+  onDeleteTag (tag) {
+    EditingService.removeTagLocally(tag.title);
+  }
+
   render() {
     var styles = {
       width: this.props.width,
@@ -59,7 +63,7 @@ class SearchFiltersArea extends Component {
     return (
       <div className="SearchFiltersArea" style={styles}>
         <SearchBar onChange={this.onSearchQueryChanged.bind(this)} onSubmit={this.onSearchQuerySubmit.bind(this)} />
-        {this.state.tags.map((tag, n) => <TagBlock key={n}>{tag.title}</TagBlock>)}
+        {this.state.tags.map((tag, n) => <TagBlock key={n} onDelete={this.onDeleteTag.bind(this, tag)}>{tag.title}</TagBlock>)}
       </div>
     );
   }
