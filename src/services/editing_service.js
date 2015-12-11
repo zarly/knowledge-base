@@ -49,6 +49,16 @@ const EditingService = {
         });
     },
 
+    setTagFilterLocally: function (tagTitles) {
+        GlobalModel.tags = tagTitles.map(function (tagTitle) {
+            return {title: tagTitle};
+        });
+
+        this.events.emit('tags:changed', GlobalModel.tags);
+
+        this.refreshListOfNotesForNewListOfTags(function () {});
+    },
+
     addTagLocally: function (tagTitle) {
         GlobalModel.tags.push({title: tagTitle});
 

@@ -39,6 +39,14 @@ class SearchResultsArea extends Component {
     EditingService.addNote(title, content, tags);
   }
 
+  onAddTag (note) {
+    EditingService.addTagLocally(note.title || note.content);
+  }
+
+  onSetFilter (note) {
+    EditingService.setTagFilterLocally([note.title || note.content]);
+  }
+
   render() {
     var styles = {
       width: this.props.width,
@@ -51,7 +59,9 @@ class SearchResultsArea extends Component {
         <div className="SearchResultsArea-viewingBlock">
           {!this.state.notes.length ?
               'No results here' :
-              this.state.notes.map((note, n) => <NoteBlock key={n}>{note.content || ('tag: ' + note.title)}</NoteBlock>)}
+              this.state.notes.map((note, n) => <NoteBlock key={n} onAddTag={this.onAddTag.bind(this, note)} onSetFilter={this.onSetFilter.bind(this, note)}>
+                {note.content || ('tag: ' + note.title)}
+              </NoteBlock>)}
         </div>
         <div className="SearchResultsArea-addingBlock" style={{height: '140px'}}>
           <div style={{flex: 1, display: 'flex', flexDirection: 'column'}}>

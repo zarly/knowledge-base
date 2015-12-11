@@ -7,10 +7,20 @@ import styles from './NoteBlock.css';
 @withStyles(styles)
 class NoteBlock extends Component {
 
+  addTag () {
+    this.props.onAddTag()
+  }
+
+  setTag () {
+    this.props.onSetFilter()
+  }
+
   render() {
     return (
       <div className="NoteBlock">
-        {this.props.children}
+        <div>{this.props.children}</div>
+        <div className="addTagBtn" onClick={this.addTag.bind(this)}>+</div>
+        <div className="setTagBtn" onClick={this.setTag.bind(this)}>=</div>
       </div>
     );
   }
