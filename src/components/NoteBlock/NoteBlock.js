@@ -15,9 +15,17 @@ class NoteBlock extends Component {
     this.props.onSetFilter()
   }
 
+  onDragStart (e) {
+    console.log('onDragStart', e);
+  }
+
+  onDragEnd (e) {
+    console.log('onDragEnd', e);
+  }
+
   render() {
     return (
-      <div className="NoteBlock">
+      <div className="NoteBlock" draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
         <div>{this.props.children}</div>
         <div className="addTagBtn" onClick={this.addTag.bind(this)}>+</div>
         <div className="setTagBtn" onClick={this.setTag.bind(this)}>=</div>
