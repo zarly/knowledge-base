@@ -59,7 +59,7 @@ class SearchResultsArea extends Component {
         <div className="SearchResultsArea-viewingBlock">
           {!this.state.notes.length ?
               'No results here' :
-              this.state.notes.map((note, n) => <NoteBlock key={n} onAddTag={this.onAddTag.bind(this, note)} onSetFilter={this.onSetFilter.bind(this, note)}>
+              this.state.notes.map((note, n) => <NoteBlock key={n} note={note} onAddTag={this.onAddTag.bind(this, note)} onSetFilter={this.onSetFilter.bind(this, note)}>
                 {note.content || ('tag: ' + note.title)}
               </NoteBlock>)}
         </div>

@@ -11,30 +11,27 @@ import EditingService from '../../services/editing_service.js';
 @withStyles(styles)
 class TagsDropBoard extends Component {
 
-  constructor () {
-    super();
-
-    EditingService.on('tags:changed', (notes)=> {
-      this.setState({tags: notes});
-    });
-  }
-
   state = {
     tags: []
   };
 
   onDragOver (e) {
+    e.preventDefault();
     if (e.target !== this) return;
     console.log('onDragOver', e);
   }
 
   onDragLeave (e) {
+    e.preventDefault();
     if (e.target !== this) return;
     console.log('onDragLeave', e);
   }
 
-  onDrop () {
-    console.log('onDrop', e);
+  onDrop (e) {
+    var tagTitle = e.dataTransfer.getData("tagTitle");
+    this.state.tags.push({title: tagTitle});
+    this.setState(this.state);
+    console.log('onDrop', e, tagTitle);
   }
 
   onDeleteTag (tag) {

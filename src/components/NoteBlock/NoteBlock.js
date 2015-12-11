@@ -16,16 +16,12 @@ class NoteBlock extends Component {
   }
 
   onDragStart (e) {
-    console.log('onDragStart', e);
-  }
-
-  onDragEnd (e) {
-    console.log('onDragEnd', e);
+    e.dataTransfer.setData("tagTitle", this.props.note.title);
   }
 
   render() {
     return (
-      <div className="NoteBlock" draggable="true" onDragStart={this.onDragStart.bind(this)} onDragEnd={this.onDragEnd.bind(this)}>
+      <div className="NoteBlock" draggable="true" onDragStart={this.onDragStart.bind(this)}>
         <div>{this.props.children}</div>
         <div className="addTagBtn" onClick={this.addTag.bind(this)}>+</div>
         <div className="setTagBtn" onClick={this.setTag.bind(this)}>=</div>
